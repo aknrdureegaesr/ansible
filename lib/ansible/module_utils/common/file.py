@@ -34,10 +34,13 @@ class LockTimeout(Exception):
 def is_executable(path):
     '''is the given path executable?
 
+    :arg path: The path of the file to check.
+
     Limitations:
+
     * Does not account for FSACLs.
     * Most times we really want to know "Can the current user execute this
-      file"  This function does not tell us that, only if an execute bit is set.
+      file".  This function does not tell us that, only if any execute bit is set.
     '''
     # These are all bitfields so first bitwise-or all the permissions we're
     # looking for, then bitwise-and with the file's mode to determine if any
